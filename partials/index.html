@@ -1,0 +1,24 @@
+<div class="hero-unit">
+    <p>Go to <a href="http://strava.com/" target="_new">Strava</a>, click on your profile, and copy that URL into the field below.</p>
+<h4>Note: this is not endorsed by Strava. It makes use of their API. No password or authentication information is needed. Only your profile URL is used to query the API.</h4>
+<p>This site reads your profile based on the url you've added below, 
+looks at your last 50 rides, then, figures out which segments you've ridden
+five or more times. It then plots a time series graph of your progress
+with a trend indicator to tell whether or not you've been improving on that
+segment.</p>
+</div>
+
+<div ng-controller="URLCtrl">
+  <form name="form" class="css-form" novalidate method="post">
+  Strava Profile URL:
+  <input type="url" name="input" class="span7" ng-model="text" required
+    ng-pattern="/http:\/\/app.strava.com\/athletes\/[0-9]+$/"
+    placeholder="Paste your Strava profile URL here">
+    <span class="error" ng-show="form.input.$error.required">
+        Required!</span>
+    <span class="error" ng-show="form.input.$error.pattern">
+        Not a valid Strava profile url!</span>
+  <br/>
+    <button ng-click="update(text)" class="btn btn-primary">Find my Segments</button>
+  </form>
+</div>
